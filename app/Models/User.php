@@ -8,6 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// Get relationship classes
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\UserInterest;
+use App\Models\UserInfo;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -19,6 +26,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
     ];
@@ -41,4 +49,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userInterest(): HasMany
+    {
+        return $this->hasMany(UserInterest::class);
+    }
+
+    public function userInfo(): HasOne
+    {
+        return $this->HasOne(UserInfo::class);
+    }
 }

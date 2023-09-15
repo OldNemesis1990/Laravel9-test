@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 //specify belongsto which model
-use App\Models\User;
+use App\Models\UserInterest;
 use Illuminate\Database\Relations\BelongsTo;
 
-class UserInfo extends Model
+class Interest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'sa_id',
-        'mobile_number',
-        'birth_date',
-        'language'
+        'interest_name'
     ];
 
-    public function user(): BelongsTo
+    public function userInterests(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserInterest::class);
     }
 }
