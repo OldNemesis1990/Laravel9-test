@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->unsignedSmallInteger('sa_id')->unique();
-            $table->varchar('mobile_number', 20)->unique();
+            $table->string('mobile_number', 20)->unique();
             $table->timestamp('birth_date');
-            $table->varchar('language');
+            $table->string('language');
         });
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('interests', function (Blueprint $table) {
             $table->id();
-            $table->varchar('interest_name');
+            $table->string('interest_name');
         });
     }
 
