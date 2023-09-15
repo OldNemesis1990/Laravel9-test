@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class FirstAdmin extends Seeder
 {
@@ -14,6 +16,14 @@ class FirstAdmin extends Seeder
      */
     public function run()
     {
-        //
+        // Create the first admin
+        $admin = User::create([
+            'name' => 'admin',
+            'surname' => 'admin',
+            'email' => 'leebaartman@gmail.com',
+            'password' => bcrypt('zxasqw12'),
+        ]);
+
+        $admin->assignRole('admin');
     }
 }
