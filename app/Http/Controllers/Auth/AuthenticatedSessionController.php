@@ -31,10 +31,15 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        if(!Auth::user()->isActived()) {
+            Auth::guard('web')->logout();
+            return redirect()->back()->withErrors(['email' => 'Account has not been activated yet and needs to be approved by an administrator']);
+        } else { 
+    
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**

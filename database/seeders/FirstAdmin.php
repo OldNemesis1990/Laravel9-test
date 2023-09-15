@@ -22,6 +22,7 @@ class FirstAdmin extends Seeder
             'surname' => 'admin',
             'email' => 'leebaartman@gmail.com',
             'password' => bcrypt('zxasqw12'),
+            'activated' => true,
         ]);
 
         $admin->assignRole('admin');

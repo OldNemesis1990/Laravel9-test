@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->HasOne(UserInfo::class);
     }
+
+    public function isActived()
+    {
+        return $this->activated;
+    }
 }
