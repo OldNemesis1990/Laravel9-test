@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->unsignedSmallInteger('sa_id')->unique();
+            $table->bigInteger('sa_id')->unique();
             $table->string('mobile_number', 20)->unique();
             $table->timestamp('birth_date');
             $table->string('language');
