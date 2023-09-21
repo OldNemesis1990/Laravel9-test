@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
+import InputSuccess from '@/Components/InputSuccess';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
@@ -10,29 +11,66 @@ import { LanguageList } from '@/Data/LanguageList';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { Input } from 'postcss';
 
-export default function Register() {
+export default function Register(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        surname: '',
         email: '',
+        mobile_number: '',
+        sa_id: '',
+        birth_date:'',
+        language: '',
         password: '',
         password_confirmation: '',
     });
 
+    const [responseData, setResponseData] = useState()
+
+    const [rawMobileNumber, setRawMobileNumber] = useState('')
+
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset('password', 'password_confirmation', 'responseData');
         };
     }, []);
 
     const handleOnChange = (event) => {
-        console.log(event.target.value)
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
-    const submit = (e) => {
+    const formatMobileNumber = (event) => {
+        const inputValue = event.target.value
+        setRawMobileNumber(inputValue)
+        const formattedValue = formatAsPhoneNumber(inputValue)
+        setData('mobile_number', formattedValue)
+    }
+
+    const formatAsPhoneNumber = (value) => {
+        value = value.replace(/\D/g, '')
+        if(value.length > 10) {
+            value = value.slice(0, 10)
+        }
+
+        value = `(${value.slice(0, 3)}) ${value.slice(3,6)}-${value.slice(6)}`
+
+        return value
+    }
+
+    const submit = async (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        try {
+            const response = await post(route('register'), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    console.log(props)
+                    setResponseData(props.message)
+                    console.log(responseData)
+                }
+            });
+        } catch(errors) {
+            console.log(errors)
+        }
     };
 
     return (
@@ -99,7 +137,7 @@ export default function Register() {
                         value={data.mobile_number}
                         className="mt-1 block w-full"
                         autoComplete="phone"
-                        onChange={handleOnChange}
+                        onChange={formatMobileNumber}
                         required
                     />
 
@@ -112,7 +150,7 @@ export default function Register() {
 
                     <TextInput
                         id="sa-id"
-                        name="sa-id"
+                        name="sa_id"
                         value={data.sa_id}
                         className="mt-1 block w-full"
                         autoComplete="sa-id"
@@ -128,7 +166,7 @@ export default function Register() {
 
                     <DateInput
                         id="dob"
-                        name="dob"
+                        name="birth_date"
                         value={data.birth_date}
                         className="mt-1 block w-full"
                         onChange={handleOnChange} 
@@ -202,7 +240,13 @@ export default function Register() {
                     <PrimaryButton className="ml-4" disabled={processing}>
                         Register
                     </PrimaryButton>
+                    
                 </div>
+                {/* {responseData && ( */}
+                    <div className="success-message mt-4">
+                        <InputSuccess message={props?.message} />
+                    </div>
+                {/* )} */}
             </form>
         </GuestLayout>
     );
