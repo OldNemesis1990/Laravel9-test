@@ -18,7 +18,7 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
-    |--------------------------------------------------------------------------
+    |------------------------------------------------------------ad--------------
     |
     | Here you may configure all of the mailers used by your application plus
     | their respective settings. Several examples have been configured for
@@ -114,5 +114,9 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+    'admin_email' => [
+        'to' => env('ADMIN_EMAIL'),
+    ]
 
 ];
