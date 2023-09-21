@@ -13,6 +13,8 @@ class UserInfo extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
         'sa_id',

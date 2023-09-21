@@ -11,9 +11,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 // Get relationship classes
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use App\Models\UserInterest;
+use App\Models\Interest;
 use App\Models\UserInfo;
 
 class User extends Authenticatable
@@ -51,9 +51,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userInterest(): HasMany
+    public function interest(): HasMany
     {
-        return $this->hasMany(UserInterest::class);
+        return $this->hasMany(Interest::class);
     }
 
     public function userInfo(): HasOne
