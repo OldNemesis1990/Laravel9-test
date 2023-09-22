@@ -36,9 +36,8 @@ class AppServiceProvider extends ServiceProvider
             $evenDigits = [];
             $ids = str_split($value, 1);
 
-            Log::info($ids);
-
             foreach ($ids as $index => $id) {
+                // mod 2 == 1 is even as array is 0 index based
                 if($index % 2 == 1) {
                     $evenDigits[] = $id;
                 } else {
@@ -64,7 +63,6 @@ class AppServiceProvider extends ServiceProvider
 
             
             if($compareDigit == substr($value, -1)) {
-                Log::info($compareDigit == substr($value, -1));
                 return true;
             }
 
