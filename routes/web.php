@@ -35,12 +35,11 @@ Route::get('/activate-user/{user}-{token}', [UserActivationController::class, 'u
 Route::middleware(['auth'])->group(function() {
     Route::get('/edit-user/{user_id}', [DashboardController::class, "viewEditUser"])->name('list.users');
     Route::put('/edit-user/{user_id}', [DashboardController::class, "updateUser"])->name('update.users');
-    Route::delete('/edit-user/{user_id}/delete', [DashboardController::class, "deleteUser"])->name('delete.users');
+    Route::delete('/edit-user/{user_id}', [DashboardController::class, "deleteUser"])->name('delete.users');
 
     Route::get('/related-users', [DashboardController::class, 'view'])->name('list.related.users');
     Route::get('/user-profile/{user_id}', [DashboardController::class, "viewUser"])->name('view.user');
     Route::put('/user-profile/{user_id}', [DashboardController::class, "updateUser"])->name('update.user');
-    Route::delete('/user-profile/{user_id}/delete', [DashboardController::class, "deleteUser"])->name('delete.user');
 });
 
 require __DIR__.'/auth.php';

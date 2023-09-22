@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserInfo;
 use App\Models\Interest;
@@ -119,6 +120,30 @@ class DashboardController extends Controller
         return Inertia::render('EditUser', [
             'user' => $user
         ]);
+    }
+
+    public function deleteUser(Request $request, $user_id) {
+        $deleted = DB::table('users')->where('id', $request->user_id)->delete();
+        $check_role = $request->user()->hasRole('admin');
+        $data = [];
+
+        if($check_role) {
+            // Display all users if user is admin excluding other admins
+            $users = User::with('userinfo', 'interest')
+            ->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'admin');
+            })->get();
+
+            $data['users'] = $users;
+
+            return redirect()->back()->with([
+                'message'  => 'User deleted successfully.',
+                'user' => $request->user(),
+                'data' => $data,
+                'isAdmin' => $check_role,
+            ]);
+        }
+
     }
 
 }
