@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Social Interest
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The "Social Interest Network" is a vibrant online platform that connects individuals based on shared social interests and passions. Whether you're a fan of photography, gaming, cooking, or any other hobby, this platform provides a welcoming space to meet and interact with like-minded enthusiasts.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Introduction
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Welcome to the Social Interest Network, where passion meets connection! Our platform is a vibrant online community that brings together individuals who share a common love for their favorite hobbies and interests. Whether you're an art enthusiast, a tech wizard, or a fitness fanatic, you'll find a welcoming space to connect with like-minded people, share experiences, and dive into engaging conversations. Join us today and discover a world of social interests waiting to be explored. It's time to connect, collaborate, and celebrate your passions with the Social Interest Network. PLEASE NOTE THAT THIS IS FOR A PROJECT/TEST
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+List the key features of your project.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+ - Admin Approval Registration: New user registrations require admin approval, ensuring a safe and trusted community.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ - Email Triggers: Automated emails are sent for account activation requests and approval notifications for user activation and approval.
 
-## Laravel Sponsors
+ - CRUD Operations: Create, read, update, and delete functionality for user profiles, interests selections.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+ - Custom SA ID Validation: Implemented custom South African ID validation to ensure accurate user data.
 
-### Premium Partners
+ - Form Handling with React JS: Utilized React JS for seamless and interactive form handling.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+ - Middleware for Admin: Admin-specific middleware to control access and actions.
 
-## Contributing
+ - Role and Permission Management: Robust role and permission system for users, ensuring proper authorization and access control.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+ - User Factory and Seeder: Created user factory and seeder for efficient database population.
 
-## Code of Conduct
+ - Route Grouping and Protection: Grouped routes for better organization and added protection to sensitive routes.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ - User Data Relationships: Established relationships between users and their interests for a personalized experience.
 
-## Security Vulnerabilities
+## Getting Started
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Social Interest is a powerful web application designed to connect people with shared interests. Whether you're looking for job opportunities, or networking, Social Interest has got you covered.
 
-## License
+This guide will walk you through the process of setting up the project locally on your machine.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Prerequisites
+
+Before you begin, make sure you have the following software installed:
+
+Composer 2.6.2: A PHP dependency manager.
+NPM: Node Package Manager (usually included with Node.js).
+PHP 8.0.2 >: PHP programming language.
+MySQL : MySQL database.
+
+Project was built with Laravel 9.5
+
+### Installation
+ - Clone into directory into localhost directory (project was built with Hoemstead and Vagrant env)
+ - Do a compose Install
+ - Do a npm install
+ - Create a db to connect to
+ - Setup env file
+   - APP_URL
+   - DB_CONNECTION = mysql
+   - DB_DATABASE
+   - DB_USERNAME
+   - DB_PASSWORD
+   - MAIL_MAILER= I used smtp
+   - MAIL_HOST
+   - MAIL_PORT = dependant on encryption
+   - MAIL_USERNAME
+   - MAIL_PASSWORD
+   - MAIL_ENCRYPTION
+   - MAIL_FROM_ADDRESS
+   - ADMIN_EMAIL (create if parameter does not exist)
+ - Update FirstAdmin Seeder to a admin of your preference 
+ - If first migration then "php artisan migrate" else "php migrate:fresh"
+ - Seeders: php artisan db:seed    OR 
+ - Permission(required): php artisan db:seed --class=PermissionSeeder
+ - Roles(required): php artisan db:seed --class=RoleSeeder
+ - First Admin(required): php artisan db:seed --class=FirstAdmin
+ - User generator: php artisan db:seed --class=UserSeeder
+
+ ## Flow Process
+ Once setup, migration and seeders are complete, you can navigate to your domain http://localhost(:port if required) or http://domain.localhost(:port if required) where you will see an introduction and 2 navigation items (login, register). When register takes place successfully a message should appear stating that an admin must approve before logging in. The ADMIN_EMAIL parameter in .env file is where the request will be sent to. once you see that email there will be a button (before clicking, please be sure that that admin is logged in and has a session), click the button, this will redirect you to the admin dashboard and trigger an event email notifying that the account has been activated and can now log in. In the user dashboard you can now add interests by clicking add interest or on profile name in dropdown once you have multi selected interests and saved you can navigate back to the dashboard where it will display in desc order other users that share interests with you with their contact information.
+
+ In the admin dashboard you will be able to see all the users, update them and delete them.
+
