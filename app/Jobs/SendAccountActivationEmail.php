@@ -39,7 +39,7 @@ class SendAccountActivationEmail implements ShouldQueue
     public function handle()
     {
         try{
-            Log::info($this->user);
+            // Try to submit data to mail facade
             Mail::to(config('mail.admin_email'))->send(new AccountActivationRequest($this->user, $this->userInfo));
 
         } catch(\Exception $e) {

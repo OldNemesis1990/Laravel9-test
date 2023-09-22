@@ -35,6 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate user input
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Create user
         $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -53,6 +55,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Create user info
         $userInfo = UserInfo::create([
             'user_id' => $user->id,
             'mobile_number' => $request->mobile_number,
@@ -61,11 +64,14 @@ class RegisteredUserController extends Controller
             'language' => $request->language,
         ]);
 
+
         event(new Registered($user));
 
+        // Assign user role
         $user->assignRole('user');
 
         if ($user && $userInfo) {
+            // if user and user info created successfully trigger AccountActivationRequested and return message to user
             event(new AccountActivationRequested($user, $userInfo));
             $message = 'Hi '.$user->name.', welcome to the system. An administrator needs to accept your request before you may login.';
             

@@ -12,7 +12,7 @@ use Log;
 
 class UserActivationController extends Controller
 {
-    // userActivation
+    // userActivation controller is protected by middleware for admin only
     public function userActivation($user_id, $token) {
         
         $user = User::find($user_id);
@@ -20,10 +20,6 @@ class UserActivationController extends Controller
         $user->activated = 1;
 
         $user_update = $user->save();
-
-        // $user_update = $user->update([
-        //     'activated' => 1
-        // ]);
 
         try{
             if($user_update) {
@@ -35,7 +31,7 @@ class UserActivationController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
-
+        
         $check_role = Auth::user()->hasRole('admin');
         
         return Inertia::render('Dashboard', [

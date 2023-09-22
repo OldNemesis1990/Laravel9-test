@@ -34,6 +34,7 @@ class SendAccountApporval implements ShouldQueue
     public function handle()
     {
         try { 
+            // try to submitdata to Mail Facade
             Mail::to($this->user->email)->send(new AccountApporval($this->user));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
